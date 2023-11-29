@@ -1,0 +1,3 @@
+Bundle-Name: liferay-courses-service
+Bundle-SymbolicName: com.liferay.courses.service
+Bundle-Version: 1.0.0
