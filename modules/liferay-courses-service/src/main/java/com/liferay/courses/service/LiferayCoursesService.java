@@ -13,7 +13,6 @@ import java.util.List;
  */
 @Component(
 	property = {
-		// TODO enter required service properties
 	},
 	service = LiferayCoursesAPI.class
 )
