@@ -1,5 +1,6 @@
 package com.liferaybook.courses.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,6 @@ import java.util.List;
  */
 public interface LiferayCoursesAPI {
 
-    List<LiferayCourse> getCourses();
+    ArrayList<LiferayCourse> getCourses();
 
 }
