@@ -17,6 +17,7 @@ import org.osgi.service.component.annotations.Reference;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * @author matteo.donnini
@@ -24,29 +25,21 @@ import java.util.ArrayList;
 
 @Component(
 	property = {
-		"com.liferay.portlet.display-category=category.sample",
+		"com.liferay.portlet.display-category=" + LiferayCoursesPortletKeys.CATEGORY_NAME,
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"com.liferay.portlet.instanceable=true",
-		"javax.portlet.display-name=LiferayCourses",
-		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/view.jsp",
-		"javax.portlet.name=" + LiferayCoursesPortletKeys.LIFERAYCOURSES,
+		"javax.portlet.display-name=" + LiferayCoursesPortletKeys.DISPLAY_NAME,
+		"javax.portlet.init-param.template-path=/META-INF/resources/",
+		"javax.portlet.init-param.view-template=" + LiferayCoursesPortletKeys.VIEW_JSP,
+		"javax.portlet.name=" + LiferayCoursesPortletKeys.PORTLET_ID,
 		"javax.portlet.resource-bundle=content.Language",
-		"javax.portlet.security-role-ref=power-user,user"
+		"javax.portlet.security-role-ref=power-user,user",
+		"com.liferay.portlet.css-class-wrapper=liferay-courses-wrapper",
+		"javax.portlet.version=3.0"
 	},
 	service = Portlet.class
 )
 
-
 public class LiferayCoursesPortlet extends MVCPortlet {
 
-	@Override
-	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
-		ArrayList<LiferayCourse> courses = liferayCoursesAPI.getCourses();
-		renderRequest.setAttribute("courses",courses);
-		super.doView(renderRequest, renderResponse);
-	}
-
-	@Reference
-	private LiferayCoursesAPI liferayCoursesAPI;
 }
