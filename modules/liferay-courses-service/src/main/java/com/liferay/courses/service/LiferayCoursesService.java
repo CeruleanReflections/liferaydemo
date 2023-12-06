@@ -6,7 +6,7 @@ import com.liferaybook.courses.api.LiferayCoursesAPI;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * @author matteo.donnini
@@ -18,8 +18,8 @@ import java.util.List;
 )
 public class LiferayCoursesService implements LiferayCoursesAPI {
 	@Override
-	public List<LiferayCourse> getCourses() {
-		List<LiferayCourse> courses = new ArrayList<>();
+	public ArrayList<LiferayCourse> getCourses() {
+		ArrayList<LiferayCourse> courses = new ArrayList<>();
 		courses.add(new LiferayCourse("Corso 1", "Descrizione corso 1"));
 		courses.add(new LiferayCourse("Corso 2","Descrizione corso 2"));
 		courses.add(new LiferayCourse("Corso 3", "Descrizione corso 3"));
