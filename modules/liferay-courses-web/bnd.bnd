@@ -1,4 +1,4 @@
-Bundle-Name: liferay-courses-web
+Bundle-Name: Liferay Courses Web
 Bundle-SymbolicName: com.liferay.courses.web
 Bundle-Version: 1.0.0
 Export-Package: com.liferay.courses.web.constants
