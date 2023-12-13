@@ -7,5 +7,6 @@ import java.util.List;
  */
 public interface LiferayCoursesAPI {
     int getCoursesCount();
-    List<LiferayCourse> getCourses(int s, int e);
+    List<LiferayCourse> getCourses(int start, int end);
+    LiferayCourse getCourse(Long courseId);
 }

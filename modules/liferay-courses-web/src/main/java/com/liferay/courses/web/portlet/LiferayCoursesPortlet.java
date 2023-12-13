@@ -1,23 +1,9 @@
 package com.liferay.courses.web.portlet;
 
 import com.liferay.courses.web.constants.LiferayCoursesPortletKeys;
-
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-
 import javax.portlet.Portlet;
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.swing.*;
-
-import com.liferaybook.courses.api.LiferayCourse;
-import com.liferaybook.courses.api.LiferayCoursesAPI;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * @author matteo.donnini

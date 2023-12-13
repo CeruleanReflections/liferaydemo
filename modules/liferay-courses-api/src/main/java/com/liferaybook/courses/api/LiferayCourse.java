@@ -12,9 +12,7 @@ public class LiferayCourse {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
     public void setName(String name) {
         this.name = name;
     }
@@ -24,6 +22,6 @@ public class LiferayCourse {
     public void setDescription(String description) {
         this.description = description;
     }
-    public long getCourseId() {return courseId;}
-    public void setCourseId(long courseId) {this.courseId = courseId;}
+    public Long getCourseId() {return courseId;}
+    public void setCourseId(Long courseId) {this.courseId = courseId;}
 }
