@@ -6,7 +6,13 @@
 taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ taglib prefix="clay" uri="http://liferay.com/tld/clay" %>
+
+<%@ page import="com.liferaybook.courses.api.LiferayCourse" %>
+<%@ page import="com.liferaybook.courses.api.LiferayCoursesAPI" %>
 
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
+
+<portlet:renderURL var="coursesListUrl" />
