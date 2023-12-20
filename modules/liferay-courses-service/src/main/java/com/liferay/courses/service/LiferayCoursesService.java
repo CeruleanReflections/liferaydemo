@@ -9,6 +9,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -45,6 +46,30 @@ public class LiferayCoursesService implements LiferayCoursesAPI {
 	@Override
 	public LiferayCourse getCourse(Long courseId) {
 		return courses.stream().filter(course -> course.getCourseId().equals(courseId)).findFirst().orElse(null);
+	}
+
+	@Override
+	public void updateCourse(Long courseId, String name, String description) {
+		LiferayCourse course = getCourse(courseId);
+		if (course != null){
+			course.setName(name);
+			course.setDescription(description);
+		}
+	}
+	@Override
+	public void saveCourse(String name, String description) {
+		Long courseId;
+		if (courses.isEmpty())
+			courseId = 1L;
+		else
+			courseId = courses.stream().max(Comparator.comparing(LiferayCourse::getCourseId)).get().getCourseId() + 1;
+		LiferayCourse course = new LiferayCourse(courseId, name, description);
+		courses.add(course);
+	}
+
+	@Override
+	public void deleteCourse(Long courseId) {
+		courses.removeIf(course -> course.getCourseId().equals(courseId));
 	}
 
 }
