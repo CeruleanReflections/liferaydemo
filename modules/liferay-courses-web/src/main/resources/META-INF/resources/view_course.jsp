@@ -13,10 +13,10 @@
         <clay:sheet-footer cssClass="sheet-footer-btn-block-sm-down">
             <div class="btn-group">
                 <div class="btn-group-item">
-                    <clay:link href="${coursesListUrl}" type="button"
-                               displayType="secondary" label="back" />
+                    <clay:link href="${coursesListUrl}" type="button" displayType="secondary" label="Annulla" />
                 </div>
             </div>
+
         </clay:sheet-footer>
     </clay:sheet>
 </clay:container-fluid>
