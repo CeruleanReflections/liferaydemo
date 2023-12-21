@@ -28,8 +28,8 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
     @Override
     protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse){
         Long courseId = ParamUtil.getLong(actionRequest, "courseId");
-        String name = ParamUtil.getString(actionRequest, "nome");
-        String description = ParamUtil.getString(actionRequest, "descrizione");
+        String name = ParamUtil.getString(actionRequest, "name");
+        String description = ParamUtil.getString(actionRequest, "description");
         if (courseId > 0)
             liferayCoursesAPI.updateCourse(courseId, name, description);
         else

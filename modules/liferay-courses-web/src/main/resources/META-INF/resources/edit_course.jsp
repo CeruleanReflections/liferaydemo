@@ -10,17 +10,17 @@
                <h2 class="sheet-title">
                <c:choose>
                     <c:when test="${course.courseId gt 0}">
-                        Modifica Corso #$}{course.courseId} "${course.name}"
+                        Modifica corso "${course.courseId}" "${course.name}"
                     </c:when>
                 <c:otherwise>
-                    Aggiungi un nuovo Corso
+                    Aggiungi un nuovo corso
                 </c:otherwise>
                </c:choose>
                </h2>
            </clay:sheet-header>
            <clay:sheet-section>
-               <aui:input name="nome" value="${course.name}" />
-               <aui:input name="descrizione" value="${course.description}" />
+               <aui:input name="name" label="Nome" value="${course.name}" />
+               <aui:input name="description" label="Descrizione" value="${course.description}" />
            </clay:sheet-section>
            <clay:sheet-footer cssClass="sheet-footer-btn-block-sm-down">
                <div class="btn-group">
