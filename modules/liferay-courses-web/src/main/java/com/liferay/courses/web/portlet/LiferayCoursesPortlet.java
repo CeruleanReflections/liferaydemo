@@ -20,6 +20,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.name=" + LiferayCoursesPortletKeys.PORTLET_ID,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user",
+		"javax.portlet.init-param.add-process-action-success-action=false",
 		"com.liferay.portlet.css-class-wrapper=liferay-courses-wrapper",
 		"javax.portlet.version=3.0"
 	},

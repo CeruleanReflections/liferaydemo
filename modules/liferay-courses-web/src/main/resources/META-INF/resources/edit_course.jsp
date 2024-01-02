@@ -1,5 +1,8 @@
 <%@ include file="init.jsp" %>
 
+<% LiferayCourse course = (LiferayCourse)request.getAttribute("course"); %>
+
+
 <portlet:actionURL name="/courses/edit_course" var="editCourseURL" />
 <aui:form action="${editCourseURL}" method="post" name="fm">
 
@@ -7,13 +10,15 @@
    <clay:container-fluid>
        <clay:sheet>
            <clay:sheet-header>
+           <liferay-ui:error key="courseNameNotValid" message="course-name-not-valid" />
+           <liferay-ui:error exception="<%= Exception.class %>" message="courses-saving-exception" />
                <h2 class="sheet-title">
                <c:choose>
                     <c:when test="${course.courseId gt 0}">
-                        Modifica corso "${course.courseId}" "${course.name}"
+                    <liferay-ui:message key="courses-edit" arguments="<%= new Object[]{course.getCourseId(), course.getName()} %>"  />
                     </c:when>
                 <c:otherwise>
-                    Aggiungi un nuovo corso
+                        <liferay-ui:message key="courses-add-new" />
                 </c:otherwise>
                </c:choose>
                </h2>

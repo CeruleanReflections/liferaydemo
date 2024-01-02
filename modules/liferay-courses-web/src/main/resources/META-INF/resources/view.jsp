@@ -21,9 +21,9 @@
                <liferay-ui:search-container-row
 
                      className="com.liferaybook.courses.api.LiferayCourse" modelVar="course" keyProperty="courseId">
-                  <liferay-ui:search-container-column-text name="ID Corso" value="${course.courseId}" />
-                  <liferay-ui:search-container-column-text name="Nome" value="${course.name}" />
-                  <liferay-ui:search-container-column-text name="Descrizione" value="${course.description}" />
+                  <liferay-ui:search-container-column-text name="courses-courses-id" value="${course.courseId}" />
+                  <liferay-ui:search-container-column-text name="courses-name" value="${course.name}" />
+                  <liferay-ui:search-container-column-text name="courses-description" value="${course.description}" />
                   <liferay-ui:search-container-column-text>
                      <liferay-ui:icon-menu direction="left-side" icon="" markupView="lexicon" message="actions" showWhenSingleIcon="<%= true %>">
 
