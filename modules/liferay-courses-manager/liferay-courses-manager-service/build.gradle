@@ -1,0 +1,12 @@
+dependencies {
+	api project(":modules:liferay-courses-manager:liferay-courses-manager-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+	compileOnly project(":modules:liferay-courses-manager:liferay-courses-manager-api")
+}
+
+buildService {
+	apiDir = "../liferay-courses-manager-api/src/main/java"
+}
+
+group = "com.liferaybook.courses.manager"

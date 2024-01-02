@@ -11,7 +11,7 @@ public class LiferayCourse {
         this.name = name;
         this.description = description;
     }
-
+    public LiferayCourse() {}
     public String getName() {return name;}
     public void setName(String name) {
         this.name = name;

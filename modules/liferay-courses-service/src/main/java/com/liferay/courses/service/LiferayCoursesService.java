@@ -1,75 +1,81 @@
 package com.liferay.courses.service;
 
 
-import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.counter.kernel.service.CounterLocalService;
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferaybook.courses.api.LiferayCourse;
 import com.liferaybook.courses.api.LiferayCoursesAPI;
 
-import org.osgi.service.component.annotations.Activate;
+import com.liferaybook.courses.manager.model.Course;
+import com.liferaybook.courses.manager.service.CourseLocalService;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author matteo.donnini
  */
 @Component(service = LiferayCoursesAPI.class)
 public class LiferayCoursesService implements LiferayCoursesAPI {
-	private List<LiferayCourse> courses;
-
-	@Activate
-	public void init(){
-		courses = new ArrayList<>();
-
-		courses.add(new LiferayCourse(1L,"Corso 1","Descrizione corso 1"));
-		courses.add(new LiferayCourse(2L,"Corso 2","Descrizione corso 2"));
-		courses.add(new LiferayCourse(3L,"Corso 3","Descrizione corso 3"));
-		courses.add(new LiferayCourse(4L,"Corso 4","Descrizione corso 4"));
-		courses.add(new LiferayCourse(5L,"Corso 5","Descrizione corso 5"));
-		courses.add(new LiferayCourse(6L,"Corso 6","Descrizione corso 6"));
-		courses.add(new LiferayCourse(7L,"Corso 7","Descrizione corso 7"));
-		courses.add(new LiferayCourse(8L,"Corso 8","Descrizione corso 8"));
-	}
 
 	@Override
 	public int getCoursesCount() {
-		return courses.size();
+		return courseLocalService.getCoursesCount();
 	}
 
 	@Override
 	public List<LiferayCourse> getCourses(int start, int end) {
-		return ListUtil.subList(courses, start, end);
+		List<Course> courses = courseLocalService.getCourses(start, end);
+		return convertToLiferayCourses(courses);
 	}
 
 	@Override
 	public LiferayCourse getCourse(Long courseId) {
-		return courses.stream().filter(course -> course.getCourseId().equals(courseId)).findFirst().orElse(null);
+		Course course = courseLocalService.fetchCourse(courseId);
+		return convertToLiferayCourse(course);
 	}
 
 	@Override
-	public void updateCourse(Long courseId, String name, String description) {
-		LiferayCourse course = getCourse(courseId);
-		if (course != null){
-			course.setName(name);
-			course.setDescription(description);
-		}
+	public void updateCourse(Long courseId, String name, String description) throws PortalException {
+		courseLocalService.updateCourse(courseId, name, description);
 	}
 	@Override
-	public void saveCourse(String name, String description) {
-		Long courseId;
-		if (courses.isEmpty())
-			courseId = 1L;
-		else
-			courseId = courses.stream().max(Comparator.comparing(LiferayCourse::getCourseId)).get().getCourseId() + 1;
-		LiferayCourse course = new LiferayCourse(courseId, name, description);
-		courses.add(course);
+	public void saveCourse(String name, String description) throws PortalException {
+		courseLocalService.addCourse(name, description);
 	}
-
 	@Override
 	public void deleteCourse(Long courseId) {
-		courses.removeIf(course -> course.getCourseId().equals(courseId));
+		try{
+			courseLocalService.deleteCourse(courseId);
+		} catch (PortalException e) {
+            _log.error(e.getCause(), e);
+        }
+    }
+
+	private LiferayCourse convertToLiferayCourse(Course course){
+		LiferayCourse liferayCourse = null;
+		if (course != null){
+			liferayCourse = new LiferayCourse();
+			BeanPropertiesUtil.copyProperties(course, liferayCourse);
+		}
+		return liferayCourse;
 	}
+
+	private List<LiferayCourse> convertToLiferayCourses(List<Course> courses){
+		return courses.stream().map(this::convertToLiferayCourse).collect(Collectors.toList());
+	}
+
+	@Reference
+	private CourseLocalService courseLocalService;
+
+	@Reference
+	private CounterLocalService counterLocalService;
+
+	private static final Log _log = LogFactoryUtil.getLog(LiferayCoursesService.class);
 
 }
