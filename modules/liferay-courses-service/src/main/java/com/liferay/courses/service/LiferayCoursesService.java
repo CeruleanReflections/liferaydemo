@@ -72,10 +72,6 @@ public class LiferayCoursesService implements LiferayCoursesAPI {
 
 	@Reference
 	private CourseLocalService courseLocalService;
-
-	@Reference
-	private CounterLocalService counterLocalService;
-
 	private static final Log _log = LogFactoryUtil.getLog(LiferayCoursesService.class);
 
 }
