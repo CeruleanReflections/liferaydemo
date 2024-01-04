@@ -6,4 +6,11 @@
 		<field name="name" type="String" />
 		<field name="description" type="String" />
 	</model>
+	<model name="com.liferaybook.courses.manager.model.Teacher">
+		<field name="teacherId" type="long" />
+		<field name="name" type="String" />
+		<field name="surname" type="String" />
+		<field name="age" type="int" />
+		<field name="salary" type="float" />
+	</model>
 </model-hints>

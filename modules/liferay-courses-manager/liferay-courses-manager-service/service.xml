@@ -21,4 +21,22 @@
 		</finder>
 	</entity>
 
+	<entity name="Teacher" local-service="true" remote-service="false">
+		<!-- PK fields -->
+		<column name="teacherId" primary="true" type="long" />
+		<!-- Other fields -->
+		<column name="name" type="String" />
+		<column name="surname" type="String" />
+		<column name="age" type="int"/>
+		<column name="salary" type="float" />
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+		<!-- Finder methods -->
+		<finder name="Name" return-type="Teacher" unique="true">
+			<finder-column name="name" />
+		</finder>
+	</entity>
+
 </service-builder>

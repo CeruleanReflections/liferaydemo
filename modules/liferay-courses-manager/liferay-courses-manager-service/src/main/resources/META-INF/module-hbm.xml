@@ -3,11 +3,21 @@
 
 <hibernate-mapping auto-import="false" default-lazy="false">
 	<import class="com.liferaybook.courses.manager.model.Course" />
+	<import class="com.liferaybook.courses.manager.model.Teacher" />
 	<class name="com.liferaybook.courses.manager.model.impl.CourseImpl" table="lb_Course">
 		<id access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="courseId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferaybook.courses.manager.model.impl.TeacherImpl" table="lb_Teacher">
+		<id access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="teacherId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="surname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="age" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.MethodPropertyAccessor" name="salary" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
 	</class>
 </hibernate-mapping>
