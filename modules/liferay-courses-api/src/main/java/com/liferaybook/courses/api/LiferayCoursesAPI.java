@@ -8,10 +8,10 @@ import java.util.List;
  * @author matteo.donnini
  */
 public interface LiferayCoursesAPI {
-    int getCoursesCount();
-    List<LiferayCourse> getCourses(int start, int end);
+    int getCoursesCount(long groupId);
+    List<LiferayCourse> getCourses(long groupId, int start, int end);
     LiferayCourse getCourse(Long courseId);
     void updateCourse(Long courseId, String name, String description) throws PortalException;
-    void saveCourse(String name, String description) throws PortalException;
+    void saveCourse(long groupId, String name, String description) throws PortalException;
     void deleteCourse(Long courseId);
 }

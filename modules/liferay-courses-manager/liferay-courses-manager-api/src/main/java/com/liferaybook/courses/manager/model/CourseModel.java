@@ -7,6 +7,7 @@ package com.liferaybook.courses.manager.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
+import com.liferay.portal.kernel.model.ShardedModel;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -22,7 +23,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @ProviderType
-public interface CourseModel extends BaseModel<Course> {
+public interface CourseModel extends BaseModel<Course>, ShardedModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -57,6 +58,36 @@ public interface CourseModel extends BaseModel<Course> {
 	 * @param courseId the course ID of this course
 	 */
 	public void setCourseId(long courseId);
+
+	/**
+	 * Returns the company ID of this course.
+	 *
+	 * @return the company ID of this course
+	 */
+	@Override
+	public long getCompanyId();
+
+	/**
+	 * Sets the company ID of this course.
+	 *
+	 * @param companyId the company ID of this course
+	 */
+	@Override
+	public void setCompanyId(long companyId);
+
+	/**
+	 * Returns the group ID of this course.
+	 *
+	 * @return the group ID of this course
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this course.
+	 *
+	 * @param groupId the group ID of this course
+	 */
+	public void setGroupId(long groupId);
 
 	/**
 	 * Returns the name of this course.

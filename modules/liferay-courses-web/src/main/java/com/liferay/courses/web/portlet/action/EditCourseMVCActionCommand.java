@@ -5,6 +5,7 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferaybook.courses.api.LiferayCoursesAPI;
 import org.jsoup.helper.Validate;
@@ -43,10 +44,11 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
             }
 
             String description = ParamUtil.getString(actionRequest, "description");
+            long groupId = portal.getScopeGroupId(actionRequest);
             if (courseId > 0)
                 liferayCoursesAPI.updateCourse(courseId, name, description);
             else
-                liferayCoursesAPI.saveCourse(name, description);
+                liferayCoursesAPI.saveCourse(groupId, name, description);
 
         } catch (Exception e) {
             SessionErrors.add(actionRequest, e.getClass());
@@ -57,4 +59,7 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
 
     @Reference
     private LiferayCoursesAPI liferayCoursesAPI;
+
+    @Reference
+    private Portal portal;
 }

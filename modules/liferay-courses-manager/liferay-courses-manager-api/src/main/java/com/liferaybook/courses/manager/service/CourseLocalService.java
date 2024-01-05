@@ -67,7 +67,7 @@ public interface CourseLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Course addCourse(Course course);
 
-	public Course addCourse(String name, String description)
+	public Course addCourse(long groupId, String name, String description)
 		throws PortalException;
 
 	/**
@@ -228,6 +228,12 @@ public interface CourseLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCoursesCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Course> getGroupCourses(long groupId, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupCoursesCount(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();

@@ -50,10 +50,14 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{courseId=");
 		sb.append(courseId);
+		sb.append(", companyId=");
+		sb.append(companyId);
+		sb.append(", groupId=");
+		sb.append(groupId);
 		sb.append(", name=");
 		sb.append(name);
 		sb.append(", description=");
@@ -68,6 +72,8 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 		CourseImpl courseImpl = new CourseImpl();
 
 		courseImpl.setCourseId(courseId);
+		courseImpl.setCompanyId(companyId);
+		courseImpl.setGroupId(groupId);
 
 		if (name == null) {
 			courseImpl.setName("");
@@ -91,6 +97,10 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		courseId = objectInput.readLong();
+
+		companyId = objectInput.readLong();
+
+		groupId = objectInput.readLong();
 		name = objectInput.readUTF();
 		description = objectInput.readUTF();
 	}
@@ -98,6 +108,10 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 	@Override
 	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(courseId);
+
+		objectOutput.writeLong(companyId);
+
+		objectOutput.writeLong(groupId);
 
 		if (name == null) {
 			objectOutput.writeUTF("");
@@ -115,6 +129,8 @@ public class CourseCacheModel implements CacheModel<Course>, Externalizable {
 	}
 
 	public long courseId;
+	public long companyId;
+	public long groupId;
 	public String name;
 	public String description;
 

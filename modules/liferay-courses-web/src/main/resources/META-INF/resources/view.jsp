@@ -14,10 +14,8 @@
             <clay:link href="${addCourseURL}" label="+" type="button" displayType="primary" />
         </div>
 
-            <liferay-ui:search-container
-                  total="<%= coursesAPI.getCoursesCount() %>" delta = "3" emptyResultsMessage="Nessun corso trovato">
-               <liferay-ui:search-container-results
-                     results="<%= coursesAPI.getCourses(searchContainer.getStart(), searchContainer.getEnd())  %>"/>
+            <liferay-ui:search-container total="<%= coursesAPI.getCoursesCount(scopeGroupId) %>" delta="4" emptyResultsMessage="Nessun corso trovato">
+            				<liferay-ui:search-container-results results="<%= coursesAPI.getCourses(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd())  %>"/>
                <liferay-ui:search-container-row
 
                      className="com.liferaybook.courses.api.LiferayCourse" modelVar="course" keyProperty="courseId">

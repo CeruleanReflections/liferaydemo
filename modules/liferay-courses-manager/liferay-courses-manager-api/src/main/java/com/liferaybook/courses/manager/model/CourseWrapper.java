@@ -32,6 +32,8 @@ public class CourseWrapper
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("courseId", getCourseId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("groupId", getGroupId());
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
 
@@ -44,6 +46,18 @@ public class CourseWrapper
 
 		if (courseId != null) {
 			setCourseId(courseId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
 		}
 
 		String name = (String)attributes.get("name");
@@ -65,6 +79,16 @@ public class CourseWrapper
 	}
 
 	/**
+	 * Returns the company ID of this course.
+	 *
+	 * @return the company ID of this course
+	 */
+	@Override
+	public long getCompanyId() {
+		return model.getCompanyId();
+	}
+
+	/**
 	 * Returns the course ID of this course.
 	 *
 	 * @return the course ID of this course
@@ -82,6 +106,16 @@ public class CourseWrapper
 	@Override
 	public String getDescription() {
 		return model.getDescription();
+	}
+
+	/**
+	 * Returns the group ID of this course.
+	 *
+	 * @return the group ID of this course
+	 */
+	@Override
+	public long getGroupId() {
+		return model.getGroupId();
 	}
 
 	/**
@@ -110,6 +144,16 @@ public class CourseWrapper
 	}
 
 	/**
+	 * Sets the company ID of this course.
+	 *
+	 * @param companyId the company ID of this course
+	 */
+	@Override
+	public void setCompanyId(long companyId) {
+		model.setCompanyId(companyId);
+	}
+
+	/**
 	 * Sets the course ID of this course.
 	 *
 	 * @param courseId the course ID of this course
@@ -127,6 +171,16 @@ public class CourseWrapper
 	@Override
 	public void setDescription(String description) {
 		model.setDescription(description);
+	}
+
+	/**
+	 * Sets the group ID of this course.
+	 *
+	 * @param groupId the group ID of this course
+	 */
+	@Override
+	public void setGroupId(long groupId) {
+		model.setGroupId(groupId);
 	}
 
 	/**

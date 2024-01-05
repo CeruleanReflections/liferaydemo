@@ -8,6 +8,9 @@
 	<entity name="Course" local-service="true" remote-service="false">
 		<!-- PK fields -->
 		<column name="courseId" primary="true" type="long" />
+		<!-- CompanyID - GroupID -->
+		<column name="companyId" type="long"/>
+		<column name="groupId" type="long"/>
 		<!-- Other fields -->
 		<column name="name" type="String" />
 		<column name="description" type="String" />
@@ -19,6 +22,15 @@
 		<finder name="Name" return-type="Course" unique="true">
 			<finder-column name="name" />
 		</finder>
+
+		<finder name="GroupId" return-type="Collection">
+				<finder-column name="groupId"/>
+		</finder>
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId"/>
+		</finder>
+
+		<reference entity="Group" package-path="com.liferay.portal" />
 	</entity>
 
 	<entity name="Teacher" local-service="true" remote-service="false">
