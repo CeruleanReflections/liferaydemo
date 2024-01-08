@@ -11,6 +11,13 @@
 		<!-- CompanyID - GroupID -->
 		<column name="companyId" type="long"/>
 		<column name="groupId" type="long"/>
+
+		<!-- Audit Fields -->
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
 		<!-- Other fields -->
 		<column name="name" type="String" />
 		<column name="description" type="String" />

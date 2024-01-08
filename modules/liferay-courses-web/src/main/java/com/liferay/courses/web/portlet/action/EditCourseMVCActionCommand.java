@@ -45,10 +45,11 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
 
             String description = ParamUtil.getString(actionRequest, "description");
             long groupId = portal.getScopeGroupId(actionRequest);
+            long userId = portal.getUserId(actionRequest);
             if (courseId > 0)
-                liferayCoursesAPI.updateCourse(courseId, name, description);
+                liferayCoursesAPI.updateCourse(userId, courseId, name, description);
             else
-                liferayCoursesAPI.saveCourse(groupId, name, description);
+                liferayCoursesAPI.saveCourse(userId, groupId, name, description);
 
         } catch (Exception e) {
             SessionErrors.add(actionRequest, e.getClass());
