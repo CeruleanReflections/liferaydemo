@@ -52,10 +52,12 @@ public class CourseLocalServiceUtil {
 	}
 
 	public static Course addCourse(
-			long userId, long groupId, String name, String description)
+			long userId, long groupId, String name, String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws PortalException {
 
-		return getService().addCourse(userId, groupId, name, description);
+		return getService().addCourse(
+			userId, groupId, name, description, serviceContext);
 	}
 
 	/**
@@ -297,10 +299,12 @@ public class CourseLocalServiceUtil {
 	}
 
 	public static Course updateCourse(
-			long userId, long courseId, String name, String description)
+			long userId, long courseId, String name, String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws PortalException {
 
-		return getService().updateCourse(userId, courseId, name, description);
+		return getService().updateCourse(
+			userId, courseId, name, description, serviceContext);
 	}
 
 	public static CourseLocalService getService() {

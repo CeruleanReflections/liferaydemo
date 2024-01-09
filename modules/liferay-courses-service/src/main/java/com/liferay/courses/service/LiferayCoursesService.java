@@ -1,11 +1,11 @@
 package com.liferay.courses.service;
 
 
-import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferaybook.courses.api.LiferayCourse;
 import com.liferaybook.courses.api.LiferayCoursesAPI;
 
@@ -42,12 +42,12 @@ public class LiferayCoursesService implements LiferayCoursesAPI {
 	}
 
 	@Override
-	public void updateCourse(long userId, Long courseId, String name, String description) throws PortalException {
-		courseLocalService.updateCourse(userId, courseId, name, description);
+	public void updateCourse(long userId, Long courseId, String name, String description, ServiceContext serviceContext) throws PortalException {
+		courseLocalService.updateCourse(userId, courseId, name, description, serviceContext);
 	}
 	@Override
-	public void saveCourse(long userId, long groupId, String name, String description) throws PortalException {
-		courseLocalService.addCourse(userId, groupId, name, description);
+	public void saveCourse(long userId, long groupId, String name, String description, ServiceContext serviceContext) throws PortalException {
+		courseLocalService.addCourse(userId, groupId, name, description, serviceContext);
 	}
 	@Override
 	public void deleteCourse(Long courseId) {
@@ -73,9 +73,6 @@ public class LiferayCoursesService implements LiferayCoursesAPI {
 
 	@Reference
 	private CourseLocalService courseLocalService;
-
-	@Reference
-	private CounterLocalService counterLocalService;
 
 	private static final Log _log = LogFactoryUtil.getLog(LiferayCoursesService.class);
 

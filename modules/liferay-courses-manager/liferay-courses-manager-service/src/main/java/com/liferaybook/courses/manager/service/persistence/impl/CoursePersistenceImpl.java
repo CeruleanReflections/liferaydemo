@@ -1282,6 +1282,254 @@ public class CoursePersistenceImpl
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 =
 		"course.companyId = ?";
 
+	private FinderPath _finderPathFetchByGroupIdAndName;
+	private FinderPath _finderPathCountByGroupIdAndName;
+
+	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or throws a <code>NoSuchCourseException</code> if it could not be found.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the matching course
+	 * @throws NoSuchCourseException if a matching course could not be found
+	 */
+	@Override
+	public Course findByGroupIdAndName(long groupId, String name)
+		throws NoSuchCourseException {
+
+		Course course = fetchByGroupIdAndName(groupId, name);
+
+		if (course == null) {
+			StringBundler sb = new StringBundler(6);
+
+			sb.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			sb.append("groupId=");
+			sb.append(groupId);
+
+			sb.append(", name=");
+			sb.append(name);
+
+			sb.append("}");
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(sb.toString());
+			}
+
+			throw new NoSuchCourseException(sb.toString());
+		}
+
+		return course;
+	}
+
+	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the matching course, or <code>null</code> if a matching course could not be found
+	 */
+	@Override
+	public Course fetchByGroupIdAndName(long groupId, String name) {
+		return fetchByGroupIdAndName(groupId, name, true);
+	}
+
+	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching course, or <code>null</code> if a matching course could not be found
+	 */
+	@Override
+	public Course fetchByGroupIdAndName(
+		long groupId, String name, boolean useFinderCache) {
+
+		name = Objects.toString(name, "");
+
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {groupId, name};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByGroupIdAndName, finderArgs, this);
+		}
+
+		if (result instanceof Course) {
+			Course course = (Course)result;
+
+			if ((groupId != course.getGroupId()) ||
+				!Objects.equals(name, course.getName())) {
+
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler sb = new StringBundler(4);
+
+			sb.append(_SQL_SELECT_COURSE_WHERE);
+
+			sb.append(_FINDER_COLUMN_GROUPIDANDNAME_GROUPID_2);
+
+			boolean bindName = false;
+
+			if (name.isEmpty()) {
+				sb.append(_FINDER_COLUMN_GROUPIDANDNAME_NAME_3);
+			}
+			else {
+				bindName = true;
+
+				sb.append(_FINDER_COLUMN_GROUPIDANDNAME_NAME_2);
+			}
+
+			String sql = sb.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query query = session.createQuery(sql);
+
+				QueryPos queryPos = QueryPos.getInstance(query);
+
+				queryPos.add(groupId);
+
+				if (bindName) {
+					queryPos.add(name);
+				}
+
+				List<Course> list = query.list();
+
+				if (list.isEmpty()) {
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByGroupIdAndName, finderArgs, list);
+					}
+				}
+				else {
+					Course course = list.get(0);
+
+					result = course;
+
+					cacheResult(course);
+				}
+			}
+			catch (Exception exception) {
+				throw processException(exception);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Course)result;
+		}
+	}
+
+	/**
+	 * Removes the course where groupId = &#63; and name = &#63; from the database.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the course that was removed
+	 */
+	@Override
+	public Course removeByGroupIdAndName(long groupId, String name)
+		throws NoSuchCourseException {
+
+		Course course = findByGroupIdAndName(groupId, name);
+
+		return remove(course);
+	}
+
+	/**
+	 * Returns the number of courses where groupId = &#63; and name = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the number of matching courses
+	 */
+	@Override
+	public int countByGroupIdAndName(long groupId, String name) {
+		name = Objects.toString(name, "");
+
+		FinderPath finderPath = _finderPathCountByGroupIdAndName;
+
+		Object[] finderArgs = new Object[] {groupId, name};
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler sb = new StringBundler(3);
+
+			sb.append(_SQL_COUNT_COURSE_WHERE);
+
+			sb.append(_FINDER_COLUMN_GROUPIDANDNAME_GROUPID_2);
+
+			boolean bindName = false;
+
+			if (name.isEmpty()) {
+				sb.append(_FINDER_COLUMN_GROUPIDANDNAME_NAME_3);
+			}
+			else {
+				bindName = true;
+
+				sb.append(_FINDER_COLUMN_GROUPIDANDNAME_NAME_2);
+			}
+
+			String sql = sb.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query query = session.createQuery(sql);
+
+				QueryPos queryPos = QueryPos.getInstance(query);
+
+				queryPos.add(groupId);
+
+				if (bindName) {
+					queryPos.add(name);
+				}
+
+				count = (Long)query.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception exception) {
+				throw processException(exception);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_GROUPIDANDNAME_GROUPID_2 =
+		"course.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_GROUPIDANDNAME_NAME_2 =
+		"course.name = ?";
+
+	private static final String _FINDER_COLUMN_GROUPIDANDNAME_NAME_3 =
+		"(course.name IS NULL OR course.name = '')";
+
 	public CoursePersistenceImpl() {
 		setModelClass(Course.class);
 
@@ -1302,6 +1550,10 @@ public class CoursePersistenceImpl
 
 		finderCache.putResult(
 			_finderPathFetchByName, new Object[] {course.getName()}, course);
+
+		finderCache.putResult(
+			_finderPathFetchByGroupIdAndName,
+			new Object[] {course.getGroupId(), course.getName()}, course);
 	}
 
 	private int _valueObjectFinderCacheListThreshold;
@@ -1376,6 +1628,15 @@ public class CoursePersistenceImpl
 
 		finderCache.putResult(_finderPathCountByName, args, Long.valueOf(1));
 		finderCache.putResult(_finderPathFetchByName, args, courseModelImpl);
+
+		args = new Object[] {
+			courseModelImpl.getGroupId(), courseModelImpl.getName()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByGroupIdAndName, args, Long.valueOf(1));
+		finderCache.putResult(
+			_finderPathFetchByGroupIdAndName, args, courseModelImpl);
 	}
 
 	/**
@@ -1864,6 +2125,16 @@ public class CoursePersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
 			new String[] {Long.class.getName()}, new String[] {"companyId"},
 			false);
+
+		_finderPathFetchByGroupIdAndName = new FinderPath(
+			FINDER_CLASS_NAME_ENTITY, "fetchByGroupIdAndName",
+			new String[] {Long.class.getName(), String.class.getName()},
+			new String[] {"groupId", "name"}, true);
+
+		_finderPathCountByGroupIdAndName = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupIdAndName",
+			new String[] {Long.class.getName(), String.class.getName()},
+			new String[] {"groupId", "name"}, false);
 
 		CourseUtil.setPersistence(this);
 	}

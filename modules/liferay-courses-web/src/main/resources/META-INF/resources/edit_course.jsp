@@ -2,16 +2,16 @@
 
 <% LiferayCourse course = (LiferayCourse)request.getAttribute("course"); %>
 
-
 <portlet:actionURL name="/courses/edit_course" var="editCourseURL" />
-<aui:form action="${editCourseURL}" method="post" name="fm">
 
+<aui:form action="${editCourseURL}" method="post" name="fm">
    <aui:input name="courseId" type="hidden" value="${course.courseId}" />
    <clay:container-fluid>
        <clay:sheet>
            <clay:sheet-header>
-           <liferay-ui:error key="courseNameNotValid" message="course-name-not-valid" />
-           <liferay-ui:error exception="<%= Exception.class %>" message="courses-saving-exception" />
+                <liferay-ui:error exception="<%= DuplicateCourseNameException.class %>" message="${errorMsg}" />
+                <liferay-ui:error exception="<%= CourseNameLengthException.class %>" message="${errorMsg}" />
+                <liferay-ui:error exception="<%= CourseDescriptionLengthException.class %>" message="${errorMsg}" />
                <h2 class="sheet-title">
                <c:choose>
                     <c:when test="${course.courseId gt 0}">

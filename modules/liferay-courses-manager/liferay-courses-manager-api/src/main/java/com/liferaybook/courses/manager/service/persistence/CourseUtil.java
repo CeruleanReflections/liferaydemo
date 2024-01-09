@@ -495,6 +495,70 @@ public class CourseUtil {
 	}
 
 	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or throws a <code>NoSuchCourseException</code> if it could not be found.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the matching course
+	 * @throws NoSuchCourseException if a matching course could not be found
+	 */
+	public static Course findByGroupIdAndName(long groupId, String name)
+		throws com.liferaybook.courses.manager.exception.NoSuchCourseException {
+
+		return getPersistence().findByGroupIdAndName(groupId, name);
+	}
+
+	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the matching course, or <code>null</code> if a matching course could not be found
+	 */
+	public static Course fetchByGroupIdAndName(long groupId, String name) {
+		return getPersistence().fetchByGroupIdAndName(groupId, name);
+	}
+
+	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching course, or <code>null</code> if a matching course could not be found
+	 */
+	public static Course fetchByGroupIdAndName(
+		long groupId, String name, boolean useFinderCache) {
+
+		return getPersistence().fetchByGroupIdAndName(
+			groupId, name, useFinderCache);
+	}
+
+	/**
+	 * Removes the course where groupId = &#63; and name = &#63; from the database.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the course that was removed
+	 */
+	public static Course removeByGroupIdAndName(long groupId, String name)
+		throws com.liferaybook.courses.manager.exception.NoSuchCourseException {
+
+		return getPersistence().removeByGroupIdAndName(groupId, name);
+	}
+
+	/**
+	 * Returns the number of courses where groupId = &#63; and name = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the number of matching courses
+	 */
+	public static int countByGroupIdAndName(long groupId, String name) {
+		return getPersistence().countByGroupIdAndName(groupId, name);
+	}
+
+	/**
 	 * Caches the course in the entity cache if it is enabled.
 	 *
 	 * @param course the course

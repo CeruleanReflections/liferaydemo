@@ -5,7 +5,7 @@
 	<author>Matteo Donnini</author>
 	<namespace>lb</namespace>
 
-	<entity name="Course" local-service="true" remote-service="false">
+	<entity name="Course" local-service="true" remote-service="false" >
 		<!-- PK fields -->
 		<column name="courseId" primary="true" type="long" />
 		<!-- CompanyID - GroupID -->
@@ -35,7 +35,13 @@
 		</finder>
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId"/>
+
 		</finder>
+		<finder name="GroupIdAndName" return-type="Course" unique="true">
+			<finder-column name="groupId" />
+			<finder-column name="name" />
+		</finder>
+
 
 		<reference entity="Group" package-path="com.liferay.portal" />
 	</entity>
@@ -57,5 +63,12 @@
 			<finder-column name="name" />
 		</finder>
 	</entity>
+
+	<!-- Exception Checking -->
+	<exceptions>
+		<exception>CourseNameLength</exception>
+		<exception>DuplicateCourseName</exception>
+		<exception>CourseDescriptionLength</exception>
+	</exceptions>
 
 </service-builder>

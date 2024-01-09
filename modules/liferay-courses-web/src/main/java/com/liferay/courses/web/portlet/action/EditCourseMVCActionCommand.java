@@ -3,6 +3,8 @@ package com.liferay.courses.web.portlet.action;
 import com.liferay.courses.web.constants.LiferayCoursesPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -36,23 +38,18 @@ public class EditCourseMVCActionCommand extends BaseMVCActionCommand {
             Long courseId = ParamUtil.getLong(actionRequest, "courseId");
             String name = ParamUtil.getString(actionRequest, "name");
 
-            if (Validator.isBlank(name) || name.trim().length() < 5) {
-                SessionErrors.add(actionRequest, "courseNameNotValid");
-                actionResponse.getRenderParameters().setValue("mvcRenderCommandName", "/courses/edit_course");
-                hideDefaultErrorMessage(actionRequest);
-                return;
-            }
-
             String description = ParamUtil.getString(actionRequest, "description");
             long groupId = portal.getScopeGroupId(actionRequest);
             long userId = portal.getUserId(actionRequest);
+            ServiceContext serviceContext = ServiceContextFactory.getInstance("com.liferaybook.courses.manager.model.Course", actionRequest);
             if (courseId > 0)
-                liferayCoursesAPI.updateCourse(userId, courseId, name, description);
+                liferayCoursesAPI.updateCourse(userId, courseId, name, description, serviceContext);
             else
-                liferayCoursesAPI.saveCourse(userId, groupId, name, description);
+                liferayCoursesAPI.saveCourse(userId, groupId, name, description, serviceContext);
 
         } catch (Exception e) {
             SessionErrors.add(actionRequest, e.getClass());
+            actionRequest.setAttribute("errorMsg", e.getMessage());
             actionResponse.getRenderParameters().setValue("mvcRenderCommandName", "/courses/edit_course");
             hideDefaultErrorMessage(actionRequest);
         }

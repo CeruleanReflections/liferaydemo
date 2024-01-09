@@ -361,6 +361,56 @@ public interface CoursePersistence extends BasePersistence<Course> {
 	public int countByCompanyId(long companyId);
 
 	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or throws a <code>NoSuchCourseException</code> if it could not be found.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the matching course
+	 * @throws NoSuchCourseException if a matching course could not be found
+	 */
+	public Course findByGroupIdAndName(long groupId, String name)
+		throws NoSuchCourseException;
+
+	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the matching course, or <code>null</code> if a matching course could not be found
+	 */
+	public Course fetchByGroupIdAndName(long groupId, String name);
+
+	/**
+	 * Returns the course where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching course, or <code>null</code> if a matching course could not be found
+	 */
+	public Course fetchByGroupIdAndName(
+		long groupId, String name, boolean useFinderCache);
+
+	/**
+	 * Removes the course where groupId = &#63; and name = &#63; from the database.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the course that was removed
+	 */
+	public Course removeByGroupIdAndName(long groupId, String name)
+		throws NoSuchCourseException;
+
+	/**
+	 * Returns the number of courses where groupId = &#63; and name = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param name the name
+	 * @return the number of matching courses
+	 */
+	public int countByGroupIdAndName(long groupId, String name);
+
+	/**
 	 * Caches the course in the entity cache if it is enabled.
 	 *
 	 * @param course the course
