@@ -36,7 +36,7 @@ import com.liferaybook.courses.manager.model.Course;
 import com.liferaybook.courses.manager.service.CourseLocalService;
 import com.liferaybook.courses.manager.service.CourseLocalServiceUtil;
 import com.liferaybook.courses.manager.service.persistence.CoursePersistence;
-import com.liferaybook.courses.manager.service.persistence.TeacherPersistence;
+import com.liferaybook.courses.manager.service.persistence.LecturePersistence;
 
 import java.io.Serializable;
 
@@ -436,7 +436,7 @@ public abstract class CourseLocalServiceBaseImpl
 	protected CoursePersistence coursePersistence;
 
 	@Reference
-	protected TeacherPersistence teacherPersistence;
+	protected LecturePersistence lecturePersistence;
 
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService

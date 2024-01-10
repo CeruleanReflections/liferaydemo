@@ -46,25 +46,21 @@
 		<reference entity="Group" package-path="com.liferay.portal" />
 	</entity>
 
-	<entity name="Teacher" local-service="true" remote-service="false">
+	<entity name="Lecture" local-service="true" remote-service="false">
 		<!-- PK fields -->
-		<column name="teacherId" primary="true" type="long" />
+		<column name="lectureId" primary="true" type="long" />
+		<!-- Company ID / Group ID Fields -->
+		<column name="companyId" type="long" />
+		<column name="groupId" type="long" />
 		<!-- Other fields -->
+		<column name="courseId" type="long" />
 		<column name="name" type="String" />
-		<column name="surname" type="String" />
-		<column name="age" type="int"/>
-		<column name="salary" type="float" />
-		<!-- Order -->
-		<order by="asc">
-			<order-column name="name" />
-		</order>
-		<!-- Finder methods -->
-		<finder name="Name" return-type="Teacher" unique="true">
-			<finder-column name="name" />
-		</finder>
+		<column name="description" type="String" />
+		<column name="videoLink" type="String" />
 	</entity>
 
-	<!-- Exception Checking -->
+
+	<!-- Exceptions -->
 	<exceptions>
 		<exception>CourseNameLength</exception>
 		<exception>DuplicateCourseName</exception>
