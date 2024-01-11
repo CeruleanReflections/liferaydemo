@@ -205,6 +205,10 @@ public class LectureLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static List<Lecture> getCourseLectures(long courseId) {
+		return getService().getCourseLectures(courseId);
+	}
+
 	public static
 		com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 			getIndexableActionableDynamicQuery() {

@@ -157,6 +157,11 @@ public class CourseWrapper
 		return model.getGroupId();
 	}
 
+	@Override
+	public java.util.List<Lecture> getLectures() {
+		return model.getLectures();
+	}
+
 	/**
 	 * Returns the modified date of this course.
 	 *

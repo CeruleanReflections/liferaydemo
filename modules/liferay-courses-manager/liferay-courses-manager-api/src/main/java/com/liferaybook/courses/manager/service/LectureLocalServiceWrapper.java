@@ -230,6 +230,13 @@ public class LectureLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferaybook.courses.manager.model.Lecture>
+		getCourseLectures(long courseId) {
+
+		return _lectureLocalService.getCourseLectures(courseId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 		getIndexableActionableDynamicQuery() {
 

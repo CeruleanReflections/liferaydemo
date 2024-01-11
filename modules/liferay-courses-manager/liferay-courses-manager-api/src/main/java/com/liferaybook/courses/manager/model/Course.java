@@ -49,4 +49,6 @@ public interface Course extends CourseModel, PersistedModel {
 
 		};
 
+	public java.util.List<Lecture> getLectures();
+
 }

@@ -7,9 +7,12 @@ package com.liferaybook.courses.manager.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferaybook.courses.manager.model.Lecture;
 import com.liferaybook.courses.manager.service.base.LectureLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+
+import java.util.List;
 
 /**
  * @author Matteo Donnini
@@ -19,4 +22,9 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class LectureLocalServiceImpl extends LectureLocalServiceBaseImpl {
+
+	public List<Lecture> getCourseLectures (long courseId){
+		return lecturePersistence.findByCourseId(courseId);
+	}
+
 }

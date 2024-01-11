@@ -57,6 +57,12 @@
 		<column name="name" type="String" />
 		<column name="description" type="String" />
 		<column name="videoLink" type="String" />
+
+		<!-- Finder -->
+		<finder name="CourseId" return-type="Collection">
+			<finder-column name="courseId"/>
+		</finder>
+
 	</entity>
 
 

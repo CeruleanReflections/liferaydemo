@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferaybook.courses.manager.model.Lecture;
 import com.liferaybook.courses.manager.service.LectureLocalService;
 import com.liferaybook.courses.manager.service.LectureLocalServiceUtil;
+import com.liferaybook.courses.manager.service.persistence.CourseFinder;
 import com.liferaybook.courses.manager.service.persistence.CoursePersistence;
 import com.liferaybook.courses.manager.service.persistence.LecturePersistence;
 
@@ -434,6 +435,9 @@ public abstract class LectureLocalServiceBaseImpl
 
 	@Reference
 	protected CoursePersistence coursePersistence;
+
+	@Reference
+	protected CourseFinder courseFinder;
 
 	protected LectureLocalService lectureLocalService;
 

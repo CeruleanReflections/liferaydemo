@@ -112,6 +112,177 @@ public class LectureUtil {
 	}
 
 	/**
+	 * Returns all the lectures where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @return the matching lectures
+	 */
+	public static List<Lecture> findByCourseId(long courseId) {
+		return getPersistence().findByCourseId(courseId);
+	}
+
+	/**
+	 * Returns a range of all the lectures where courseId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>LectureModelImpl</code>.
+	 * </p>
+	 *
+	 * @param courseId the course ID
+	 * @param start the lower bound of the range of lectures
+	 * @param end the upper bound of the range of lectures (not inclusive)
+	 * @return the range of matching lectures
+	 */
+	public static List<Lecture> findByCourseId(
+		long courseId, int start, int end) {
+
+		return getPersistence().findByCourseId(courseId, start, end);
+	}
+
+	/**
+	 * Returns an ordered range of all the lectures where courseId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>LectureModelImpl</code>.
+	 * </p>
+	 *
+	 * @param courseId the course ID
+	 * @param start the lower bound of the range of lectures
+	 * @param end the upper bound of the range of lectures (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching lectures
+	 */
+	public static List<Lecture> findByCourseId(
+		long courseId, int start, int end,
+		OrderByComparator<Lecture> orderByComparator) {
+
+		return getPersistence().findByCourseId(
+			courseId, start, end, orderByComparator);
+	}
+
+	/**
+	 * Returns an ordered range of all the lectures where courseId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>LectureModelImpl</code>.
+	 * </p>
+	 *
+	 * @param courseId the course ID
+	 * @param start the lower bound of the range of lectures
+	 * @param end the upper bound of the range of lectures (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching lectures
+	 */
+	public static List<Lecture> findByCourseId(
+		long courseId, int start, int end,
+		OrderByComparator<Lecture> orderByComparator, boolean useFinderCache) {
+
+		return getPersistence().findByCourseId(
+			courseId, start, end, orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns the first lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching lecture
+	 * @throws NoSuchLectureException if a matching lecture could not be found
+	 */
+	public static Lecture findByCourseId_First(
+			long courseId, OrderByComparator<Lecture> orderByComparator)
+		throws com.liferaybook.courses.manager.exception.
+			NoSuchLectureException {
+
+		return getPersistence().findByCourseId_First(
+			courseId, orderByComparator);
+	}
+
+	/**
+	 * Returns the first lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching lecture, or <code>null</code> if a matching lecture could not be found
+	 */
+	public static Lecture fetchByCourseId_First(
+		long courseId, OrderByComparator<Lecture> orderByComparator) {
+
+		return getPersistence().fetchByCourseId_First(
+			courseId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching lecture
+	 * @throws NoSuchLectureException if a matching lecture could not be found
+	 */
+	public static Lecture findByCourseId_Last(
+			long courseId, OrderByComparator<Lecture> orderByComparator)
+		throws com.liferaybook.courses.manager.exception.
+			NoSuchLectureException {
+
+		return getPersistence().findByCourseId_Last(
+			courseId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching lecture, or <code>null</code> if a matching lecture could not be found
+	 */
+	public static Lecture fetchByCourseId_Last(
+		long courseId, OrderByComparator<Lecture> orderByComparator) {
+
+		return getPersistence().fetchByCourseId_Last(
+			courseId, orderByComparator);
+	}
+
+	/**
+	 * Returns the lectures before and after the current lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param lectureId the primary key of the current lecture
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next lecture
+	 * @throws NoSuchLectureException if a lecture with the primary key could not be found
+	 */
+	public static Lecture[] findByCourseId_PrevAndNext(
+			long lectureId, long courseId,
+			OrderByComparator<Lecture> orderByComparator)
+		throws com.liferaybook.courses.manager.exception.
+			NoSuchLectureException {
+
+		return getPersistence().findByCourseId_PrevAndNext(
+			lectureId, courseId, orderByComparator);
+	}
+
+	/**
+	 * Removes all the lectures where courseId = &#63; from the database.
+	 *
+	 * @param courseId the course ID
+	 */
+	public static void removeByCourseId(long courseId) {
+		getPersistence().removeByCourseId(courseId);
+	}
+
+	/**
+	 * Returns the number of lectures where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @return the number of matching lectures
+	 */
+	public static int countByCourseId(long courseId) {
+		return getPersistence().countByCourseId(courseId);
+	}
+
+	/**
 	 * Caches the lecture in the entity cache if it is enabled.
 	 *
 	 * @param lecture the lecture

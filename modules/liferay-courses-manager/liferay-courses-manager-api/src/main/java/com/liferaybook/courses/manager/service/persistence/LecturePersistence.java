@@ -33,6 +33,149 @@ public interface LecturePersistence extends BasePersistence<Lecture> {
 	 */
 
 	/**
+	 * Returns all the lectures where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @return the matching lectures
+	 */
+	public java.util.List<Lecture> findByCourseId(long courseId);
+
+	/**
+	 * Returns a range of all the lectures where courseId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>LectureModelImpl</code>.
+	 * </p>
+	 *
+	 * @param courseId the course ID
+	 * @param start the lower bound of the range of lectures
+	 * @param end the upper bound of the range of lectures (not inclusive)
+	 * @return the range of matching lectures
+	 */
+	public java.util.List<Lecture> findByCourseId(
+		long courseId, int start, int end);
+
+	/**
+	 * Returns an ordered range of all the lectures where courseId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>LectureModelImpl</code>.
+	 * </p>
+	 *
+	 * @param courseId the course ID
+	 * @param start the lower bound of the range of lectures
+	 * @param end the upper bound of the range of lectures (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching lectures
+	 */
+	public java.util.List<Lecture> findByCourseId(
+		long courseId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Lecture>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the lectures where courseId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>LectureModelImpl</code>.
+	 * </p>
+	 *
+	 * @param courseId the course ID
+	 * @param start the lower bound of the range of lectures
+	 * @param end the upper bound of the range of lectures (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching lectures
+	 */
+	public java.util.List<Lecture> findByCourseId(
+		long courseId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Lecture>
+			orderByComparator,
+		boolean useFinderCache);
+
+	/**
+	 * Returns the first lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching lecture
+	 * @throws NoSuchLectureException if a matching lecture could not be found
+	 */
+	public Lecture findByCourseId_First(
+			long courseId,
+			com.liferay.portal.kernel.util.OrderByComparator<Lecture>
+				orderByComparator)
+		throws NoSuchLectureException;
+
+	/**
+	 * Returns the first lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching lecture, or <code>null</code> if a matching lecture could not be found
+	 */
+	public Lecture fetchByCourseId_First(
+		long courseId,
+		com.liferay.portal.kernel.util.OrderByComparator<Lecture>
+			orderByComparator);
+
+	/**
+	 * Returns the last lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching lecture
+	 * @throws NoSuchLectureException if a matching lecture could not be found
+	 */
+	public Lecture findByCourseId_Last(
+			long courseId,
+			com.liferay.portal.kernel.util.OrderByComparator<Lecture>
+				orderByComparator)
+		throws NoSuchLectureException;
+
+	/**
+	 * Returns the last lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching lecture, or <code>null</code> if a matching lecture could not be found
+	 */
+	public Lecture fetchByCourseId_Last(
+		long courseId,
+		com.liferay.portal.kernel.util.OrderByComparator<Lecture>
+			orderByComparator);
+
+	/**
+	 * Returns the lectures before and after the current lecture in the ordered set where courseId = &#63;.
+	 *
+	 * @param lectureId the primary key of the current lecture
+	 * @param courseId the course ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next lecture
+	 * @throws NoSuchLectureException if a lecture with the primary key could not be found
+	 */
+	public Lecture[] findByCourseId_PrevAndNext(
+			long lectureId, long courseId,
+			com.liferay.portal.kernel.util.OrderByComparator<Lecture>
+				orderByComparator)
+		throws NoSuchLectureException;
+
+	/**
+	 * Removes all the lectures where courseId = &#63; from the database.
+	 *
+	 * @param courseId the course ID
+	 */
+	public void removeByCourseId(long courseId);
+
+	/**
+	 * Returns the number of lectures where courseId = &#63;.
+	 *
+	 * @param courseId the course ID
+	 * @return the number of matching lectures
+	 */
+	public int countByCourseId(long courseId);
+
+	/**
 	 * Caches the lecture in the entity cache if it is enabled.
 	 *
 	 * @param lecture the lecture

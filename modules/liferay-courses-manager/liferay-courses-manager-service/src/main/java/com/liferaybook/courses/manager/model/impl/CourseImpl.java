@@ -5,8 +5,20 @@
 
 package com.liferaybook.courses.manager.model.impl;
 
+import com.liferaybook.courses.manager.model.Lecture;
+import com.liferaybook.courses.manager.service.LectureLocalServiceUtil;
+
+import java.util.List;
+
 /**
  * @author Matteo Donnini
  */
 public class CourseImpl extends CourseBaseImpl {
+
+    public List<Lecture> getLectures(){
+        long courseId = getCourseId();
+        return LectureLocalServiceUtil.getCourseLectures(courseId);
+    }
+
+
 }
