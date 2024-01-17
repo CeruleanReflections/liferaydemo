@@ -249,6 +249,18 @@ public class CourseLocalServiceUtil {
 		return getService().getCoursesCount();
 	}
 
+	public static List<Course> getCoursesGT500() {
+		return getService().getCoursesGT500();
+	}
+
+	public static List<Course> getDBeaverAddedCourses() {
+		return getService().getDBeaverAddedCourses();
+	}
+
+	public static List<Course> getDifferentUserCourses(long userId) {
+		return getService().getDifferentUserCourses(userId);
+	}
+
 	public static List<Course> getGroupCourses(
 		long groupId, int start, int end) {
 
@@ -282,10 +294,6 @@ public class CourseLocalServiceUtil {
 		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static List<Course> getUserCourses(long groupId, long userId) {
-		return getService().getUserCourses(groupId, userId);
 	}
 
 	/**

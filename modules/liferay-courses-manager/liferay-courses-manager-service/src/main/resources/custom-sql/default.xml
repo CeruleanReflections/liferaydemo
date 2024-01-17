@@ -1,18 +1,38 @@
 <?xml version="1.0"?>
 <custom-sql>
-    <sql id="com.liferaybook.courses.manager.service.persistence.CourseFinder.findSiteCoursesForUser">
+    <sql id="com.liferaybook.courses.manager.service.persistence.CourseFinder.findDifferentUserCourses">
         <![CDATA[
          SELECT
             lb_Course.*
          FROM
             lb_Course
-               INNER JOIN lb_CourseSubscription
-                        ON lb_Course.courseId = lb_CourseSubscription.courseId
-               INNER JOIN lb_Lecture
-                        ON lb_Course.courseId = lb_Lecture.courseId
          WHERE
-               lb_Course.groupId = ? AND
-               lb_CourseSubscription.userId = ?
+               lb_Course.userId != ?
+         ORDER BY
+            lb_Course.name
+      ]]>
+    </sql>
+    <sql id="com.liferaybook.courses.manager.service.persistence.CourseFinder.findCoursesGT500">
+    <![CDATA[
+         SELECT
+            lb_Course.*
+         FROM
+            lb_Course
+         WHERE
+               lb_Course.courseId > 500
+         ORDER BY
+            lb_Course.name
+      ]]>
+    </sql>
+    <sql id="com.liferaybook.courses.manager.service.persistence.CourseFinder.findDBeaverAddedCourses">
+        <![CDATA[
+         SELECT
+            lb_Course.*
+         FROM
+            lb_Course
+         WHERE
+               lb_Course.createDate IS NULL
+               AND lb_Course.modifiedDate IS NULL
          ORDER BY
             lb_Course.name
       ]]>

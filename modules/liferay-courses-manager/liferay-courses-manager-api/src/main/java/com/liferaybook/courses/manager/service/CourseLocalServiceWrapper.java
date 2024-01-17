@@ -283,6 +283,27 @@ public class CourseLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferaybook.courses.manager.model.Course>
+		getCoursesGT500() {
+
+		return _courseLocalService.getCoursesGT500();
+	}
+
+	@Override
+	public java.util.List<com.liferaybook.courses.manager.model.Course>
+		getDBeaverAddedCourses() {
+
+		return _courseLocalService.getDBeaverAddedCourses();
+	}
+
+	@Override
+	public java.util.List<com.liferaybook.courses.manager.model.Course>
+		getDifferentUserCourses(long userId) {
+
+		return _courseLocalService.getDifferentUserCourses(userId);
+	}
+
+	@Override
+	public java.util.List<com.liferaybook.courses.manager.model.Course>
 		getGroupCourses(long groupId, int start, int end) {
 
 		return _courseLocalService.getGroupCourses(groupId, start, end);
@@ -319,13 +340,6 @@ public class CourseLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _courseLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	@Override
-	public java.util.List<com.liferaybook.courses.manager.model.Course>
-		getUserCourses(long groupId, long userId) {
-
-		return _courseLocalService.getUserCourses(groupId, userId);
 	}
 
 	/**

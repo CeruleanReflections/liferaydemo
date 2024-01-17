@@ -1,7 +1,13 @@
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "release.portal.api"
 	compileOnly project(":modules:liferay-courses-manager:liferay-courses-manager-api")
-}
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.0.3'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.3'
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.25.1'
+	compileInclude 'org.junit.jupiter:junit-jupiter-api:5.0.3'
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.9.0'
+	compileInclude group: 'org.mockito', name: 'mockito-core', version: '5.9.0'
+	}
 
 buildService {
 	apiDir = "../liferay-courses-manager-api/src/main/java"

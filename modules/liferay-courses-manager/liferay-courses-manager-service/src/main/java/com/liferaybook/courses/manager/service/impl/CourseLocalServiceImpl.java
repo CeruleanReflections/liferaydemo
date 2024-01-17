@@ -18,7 +18,6 @@ import com.liferaybook.courses.manager.exception.CourseNameLengthException;
 import com.liferaybook.courses.manager.exception.DuplicateCourseNameException;
 import com.liferaybook.courses.manager.model.Course;
 import com.liferaybook.courses.manager.service.base.CourseLocalServiceBaseImpl;
-
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -82,7 +81,16 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 	public List<Course> getGroupCourses(long groupId, int start, int end){
 		return coursePersistence.findByGroupId(groupId, start, end);
 	}
-	public List<Course> getUserCourses(long groupId, long userId){
-		return courseFinder.findSiteCoursesForUser(groupId, userId);
+	public List<Course> getDifferentUserCourses(long userId){
+		return courseFinder.findDifferentUserCourses(userId);
 	}
+
+	public List<Course> getCoursesGT500(){
+		return courseFinder.findCoursesGT500();
+	}
+
+	public List<Course> getDBeaverAddedCourses(){
+		return courseFinder.findDBeaverAddedCourses();
+	}
+
 }

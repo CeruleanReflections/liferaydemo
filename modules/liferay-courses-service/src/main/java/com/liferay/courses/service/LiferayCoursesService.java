@@ -30,9 +30,32 @@ public class LiferayCoursesService implements LiferayCoursesAPI {
 	}
 
 	@Override
+	public List<LiferayCourse> getDBeaverCreatedCourses() {
+		List<Course> courses = courseLocalService.getDBeaverAddedCourses();
+		return convertToLiferayCourses(courses);
+	}
+
+	@Override
+	public List<LiferayCourse> getCoursesGT500() {
+		List<Course> courses = courseLocalService.getCoursesGT500();
+		return convertToLiferayCourses(courses);
+	}
+
+	@Override
+	public int getDifferentUserCoursesCount(long userId) {
+		return courseLocalService.getDifferentUserCourses(userId).size();
+	}
+
+	@Override
+	public List<LiferayCourse> getDifferentUserCourses(long userId) {
+		List<Course> courses = courseLocalService.getDifferentUserCourses(userId);
+		return convertToLiferayCourses(courses);
+	}
+
+	@Override
 	public List<LiferayCourse> getCourses(long groupId, int start, int end) {
 		List<Course> courses = courseLocalService.getGroupCourses(groupId, start, end);
-		return convertToLiferayCourses(courses);
+ 		return convertToLiferayCourses(courses);
 	}
 
 	@Override
@@ -70,6 +93,7 @@ public class LiferayCoursesService implements LiferayCoursesAPI {
 	private List<LiferayCourse> convertToLiferayCourses(List<Course> courses){
 		return courses.stream().map(this::convertToLiferayCourse).collect(Collectors.toList());
 	}
+
 
 	@Reference
 	private CourseLocalService courseLocalService;
